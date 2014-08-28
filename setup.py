@@ -1,7 +1,7 @@
 from distutils.core import setup, Extension
 import numpy.distutils.misc_util
 
-module1 = Extension('spi-numpy', sources = ['spi.c'])
+module1 = Extension('spinumpy', sources = ['spi.c'])
 
 setup (
     name = 'SPI-NumPy',

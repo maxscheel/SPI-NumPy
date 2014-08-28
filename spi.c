@@ -203,8 +203,8 @@ static PyMethodDef SpiMethods[] =
 
 PyMODINIT_FUNC
 
-initspi(void)
+initspinumpy(void)
 {
-	(void) Py_InitModule("spi", SpiMethods);
+	(void) Py_InitModule("spinumpy", SpiMethods);
         import_array();
 }
