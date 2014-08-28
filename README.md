@@ -1,4 +1,8 @@
-SPI-Py: Hardware SPI as a C Extension for Python
+SPI-NumPy is based on SPI-Py
+============================
+Transfer returns a NumPy uint8 array instead of a list.
+
+SPI-Py: Hardware SPI as a C Extension for Python 
 ======
 
 COPYRIGHT (C) 2012 Louis Thiery. All rights reserved. Further work by Connor Wolf.
