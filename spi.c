@@ -27,6 +27,7 @@
 #include <sys/ioctl.h>
 #include <linux/types.h>
 #include <linux/spi/spidev.h>
+#include <numpy/arrayobject.h>
 
 static void pabort(const char *s)
 {
@@ -178,11 +179,11 @@ static PyObject* transfer(PyObject* self, PyObject* arg)
 	if (ret < 1)
 		pabort("can't send spi message");
 
-	transferTuple = PyTuple_New(tupleSize);
-	for(i=0;i<tupleSize;i++)
-		PyTuple_SetItem(transferTuple, i, Py_BuildValue("i",rx[i]));
-
-	return transferTuple;
+        npy_intp dims[] = {tupleSize};
+	PyArrayObject *nparray = (PyArrayObject*) PyArray_SimpleNew(1, dims, NPY_UINT8);
+	uint8_t *buffer = (uint8_t*) nparray->data;
+	for(i=0;i<tupleSize;i++) buffer[i] = rx[i];
+	return PyArray_Return(nparray);
 }
 
 
@@ -205,4 +206,5 @@ PyMODINIT_FUNC
 initspi(void)
 {
 	(void) Py_InitModule("spi", SpiMethods);
+        import_array();
 }

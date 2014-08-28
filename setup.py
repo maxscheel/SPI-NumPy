@@ -1,15 +1,17 @@
 from distutils.core import setup, Extension
+import numpy.distutils.misc_util
 
-module1 = Extension('spi', sources = ['spi.c'])
+module1 = Extension('spi-numpy', sources = ['spi.c'])
 
 setup (
-    name = 'SPI-Py',
-    author='Louis Thiery',
-    url='https://github.com/lthiery/SPI-Py',
-    download_url='https://github.com/lthiery/SPI-Py/archive/master.zip',
+    name = 'SPI-NumPy',
+    author='Max Scheel',
+    url='https://github.com/maxscheel/SPI-NumPy',
+    download_url='https://github.com/maxscheel/SPI-NumPy/archive/master.zip',
     version = '1.0',
-    description = 'SPI-Py: Hardware SPI as a C Extension for Python',
+    description = 'SPI-NumPy: Hardware SPI as a C Extension for Python with NumPy',
     license='GPL-v2',
     platforms=['Linux'],
+    include_dirs=numpy.distutils.misc_util.get_numpy_include_dirs(),
     ext_modules = [module1]
 )
